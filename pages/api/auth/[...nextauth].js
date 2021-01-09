@@ -11,23 +11,25 @@ const options = {
             from: process.env.NEXTAUTH_EMAIL_FROM,
             sendVerificationRequest: ({ identifier: email, url, token, site, provider }) => {
                 return new Promise((resolve, reject) => {
+                    console.log(email, url, token, site)
                     const { server, from } = provider
                     // Strip protocol from URL and use domain as site name
                     //site = site.replace(/^https?:\/\//, '')
                     emailProvider.send({
                         template: 'signup',
                         message: {
-                            to: "test@test.tes"
+                            to: email
                         },
                         locals: {
                             url,
                             site,
                             email
                         }
-                    }).then(() => {
+                    }).then((info) => {
+                        console.log("email successfully sent")
                         return resolve();
                     }).catch(error => {
-                        console.error('SEND_VERIFICATION_EMAIL_ERROR', email, error)
+                        console.log('SEND_VERIFICATION_EMAIL_ERROR', email, error)
                         return reject(new Error('SEND_VERIFICATION_EMAIL_ERROR', error))
                     })
                 })

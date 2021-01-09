@@ -38,7 +38,7 @@ const options = {
         }),
         // When configuring oAuth providers make sure you enabling requesting
         // permission to get the users email address (required to sign in)
-        Providers.Google({
+        /*Providers.Google({
             clientId: process.env.NEXTAUTH_GOOGLE_ID,
             clientSecret: process.env.NEXTAUTH_GOOGLE_SECRET,
         }),
@@ -53,7 +53,7 @@ const options = {
         Providers.GitHub({
             clientId: process.env.NEXTAUTH_GITHUB_ID,
             clientSecret: process.env.NEXTAUTH_GITHUB_SECRET,
-        }),
+        }),*/
     ],
 
     // @link https://next-auth.js.org/configuration/databases

@@ -18,7 +18,7 @@ const options = {
                 },
             },
             // Email services often only allow sending email from a valid/verified address
-            from: process.env.NEXTAUTH_EMAIL_FROM,
+            from: process.env.EMAIL_USER,
             sendVerificationRequest: ({ identifier: email, url, token, site, provider }) => {
                 return new Promise((resolve, reject) => {
                     console.log(email, url, token, site)

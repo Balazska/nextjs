@@ -27,6 +27,7 @@ const options = {
                         }
                     }).then((info) => {
                         console.log("email successfully sent")
+
                         return resolve();
                     }).catch(error => {
                         console.log('SEND_VERIFICATION_EMAIL_ERROR', email, error)

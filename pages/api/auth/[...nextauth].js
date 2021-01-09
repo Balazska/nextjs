@@ -55,7 +55,6 @@ const options = {
 
     // @link https://next-auth.js.org/configuration/databases
     database: process.env.NEXTAUTH_DATABASE_URL,
-
     // @link https://next-auth.js.org/configuration/options#session
     session: {
         // Use JSON Web Tokens for session instead of database sessions.

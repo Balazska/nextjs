@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 import { emailProvider } from '../../../config/email'
+import path from "path"
 const options = {
     // @link https://next-auth.js.org/configuration/providers
     providers: [
@@ -15,8 +16,9 @@ const options = {
                     const { server, from } = provider
                     // Strip protocol from URL and use domain as site name
                     //site = site.replace(/^https?:\/\//, '')
+                    console.log(__dirname)
                     emailProvider.send({
-                        template: 'signup',
+                        template: path.join(__dirname, '..', '..', 'emails', 'signup'),
                         message: {
                             to: email
                         },

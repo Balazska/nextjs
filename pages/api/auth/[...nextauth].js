@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 import { emailProvider } from '../../../config/email'
+import path from "path"
 const options = {
     // @link https://next-auth.js.org/configuration/providers
     providers: [
@@ -15,8 +16,9 @@ const options = {
                     const { server, from } = provider
                     // Strip protocol from URL and use domain as site name
                     //site = site.replace(/^https?:\/\//, '')
+                    console.log(__dirname)
                     emailProvider.send({
-                        template: 'signup',
+                        template: path.join(__dirname, '..', '..', 'emails', 'signup'),
                         message: {
                             to: email
                         },
@@ -27,6 +29,7 @@ const options = {
                         }
                     }).then((info) => {
                         console.log("email successfully sent")
+
                         return resolve();
                     }).catch(error => {
                         console.log('SEND_VERIFICATION_EMAIL_ERROR', email, error)
@@ -37,7 +40,7 @@ const options = {
         }),
         // When configuring oAuth providers make sure you enabling requesting
         // permission to get the users email address (required to sign in)
-        Providers.Google({
+        /*Providers.Google({
             clientId: process.env.NEXTAUTH_GOOGLE_ID,
             clientSecret: process.env.NEXTAUTH_GOOGLE_SECRET,
         }),
@@ -52,7 +55,7 @@ const options = {
         Providers.GitHub({
             clientId: process.env.NEXTAUTH_GITHUB_ID,
             clientSecret: process.env.NEXTAUTH_GITHUB_SECRET,
-        }),
+        }),*/
     ],
 
     // @link https://next-auth.js.org/configuration/databases
